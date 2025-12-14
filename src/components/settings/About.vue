@@ -1,8 +1,8 @@
 <template>
     <div class="d-flex justify-content-center align-items-center">
         <div class="logo d-flex flex-column justify-content-center align-items-center">
-            <object class="my-4" width="200" height="200" data="/icon.svg" />
-            <div class="fs-4 fw-bold">Uptime Kuma</div>
+            <object class="my-4" width="200" height="200" :data="logoURL" />
+            <div class="fs-4 fw-bold">{{ appName }}</div>
             <div>{{ $t("Version") }}: {{ $root.info.version }}</div>
             <div class="frontend-version">{{ $t("Frontend Version") }}: {{ $root.frontendVersion }}</div>
 
@@ -39,6 +39,12 @@ export default {
         },
         settingsLoaded() {
             return this.$parent.$parent.$parent.settingsLoaded;
+        },
+        appName() {
+            return this.$root.info.appName || "Uptime Kuma";
+        },
+        logoURL() {
+            return this.$root.info.logoURL || "/icon.svg";
         },
     },
 

@@ -1,6 +1,62 @@
 <template>
     <div>
         <form class="my-4" autocomplete="off" @submit.prevent="saveGeneral">
+            <!-- Branding Section -->
+            <h5 class="my-4">{{ $t("Branding") }}</h5>
+
+            <!-- Application Name -->
+            <div class="mb-4">
+                <label for="appName" class="form-label">
+                    {{ $t("Application Name") }}
+                </label>
+                <input
+                    id="appName"
+                    v-model="settings.appName"
+                    type="text"
+                    class="form-control"
+                    :placeholder="'Uptime Kuma'"
+                />
+                <div class="form-text">
+                    {{ $t("Name displayed in browser tab and header") }}
+                </div>
+            </div>
+
+            <!-- Logo URL -->
+            <div class="mb-4">
+                <label for="logoURL" class="form-label">
+                    {{ $t("Logo URL") }}
+                </label>
+                <input
+                    id="logoURL"
+                    v-model="settings.logoURL"
+                    type="text"
+                    class="form-control"
+                    placeholder="https://example.com/logo.svg"
+                />
+                <div class="form-text">
+                    {{ $t("URL to your custom logo image (SVG, PNG recommended). Leave empty to use default.") }}
+                </div>
+            </div>
+
+            <!-- Favicon URL -->
+            <div class="mb-4">
+                <label for="faviconURL" class="form-label">
+                    {{ $t("Favicon URL") }}
+                </label>
+                <input
+                    id="faviconURL"
+                    v-model="settings.faviconURL"
+                    type="text"
+                    class="form-control"
+                    placeholder="https://example.com/favicon.ico"
+                />
+                <div class="form-text">
+                    {{ $t("URL to your custom favicon. Leave empty to use default.") }}
+                </div>
+            </div>
+
+            <hr class="my-4">
+
             <!-- Client side Timezone -->
             <div class="mb-4">
                 <label for="timezone" class="form-label">

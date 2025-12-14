@@ -117,6 +117,18 @@ export default {
 
             socket.on("info", (info) => {
                 this.info = info;
+                // Update document title and favicon on initial load
+                if (info.appName) {
+                    document.title = info.appName;
+                } else {
+                    document.title = "Uptime Kuma";
+                }
+                if (info.faviconURL) {
+                    const links = document.querySelectorAll("link[rel*='icon']");
+                    links.forEach(link => {
+                        link.href = info.faviconURL;
+                    });
+                }
             });
 
             socket.on("setup", (monitorID, data) => {
@@ -847,6 +859,25 @@ export default {
                 this.faviconUpdateDebounce = setTimeout(() => {
                     favicon.badge(to);
                 }, 1000);
+            }
+        },
+
+        // Update document title when app name changes
+        "info.appName"(to) {
+            if (to) {
+                document.title = to;
+            } else {
+                document.title = "Uptime Kuma";
+            }
+        },
+
+        // Update favicon when favicon URL changes
+        "info.faviconURL"(to) {
+            if (to) {
+                const links = document.querySelectorAll("link[rel*='icon']");
+                links.forEach(link => {
+                    link.href = to;
+                });
             }
         },
 
