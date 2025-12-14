@@ -162,9 +162,9 @@ async function sendInfo(socket, hideVersion = false) {
         primaryBaseURL: await setting("primaryBaseURL"),
         serverTimezone: await server.getTimezone(),
         serverTimezoneOffset: server.getTimezoneOffset(),
-        appName: await setting("appName"),
-        logoURL: await setting("logoURL"),
-        faviconURL: await setting("faviconURL"),
+        appName: await setting("appName") || undefined,
+        logoURL: await setting("logoURL") || undefined,
+        faviconURL: await setting("faviconURL") || undefined,
     });
 }
 
